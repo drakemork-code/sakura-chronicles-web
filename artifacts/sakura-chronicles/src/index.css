@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&family=Marcellus&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* DARK CINEMATIC THEME (Base theme is dark for this MMORPG) */
+  --background: 228 18% 5%; /* #0B0C10 */
+  --foreground: 33 24% 95%; /* Creamy white #F5F2EE */
+  
+  --border: 228 15% 15%;
+  --input: 228 15% 12%;
+  --ring: 345 69% 71%;
+
+  --card: 228 18% 7%;
+  --card-foreground: 33 24% 95%;
+  --card-border: 44 53% 54%; /* Ancient gold border for cards */
+
+  --popover: 228 18% 6%;
+  --popover-foreground: 33 24% 95%;
+  --popover-border: 44 53% 54%;
+
+  --primary: 345 69% 71%; /* Sakura Rose #E8829C */
+  --primary-foreground: 228 18% 5%;
+  
+  --secondary: 44 53% 54%; /* Ancient Gold #C9A84C */
+  --secondary-foreground: 228 18% 5%;
+
+  --muted: 228 15% 15%;
+  --muted-foreground: 228 10% 65%;
+
+  --accent: 345 50% 20%;
+  --accent-foreground: 345 69% 71%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 33 24% 95%;
+
+  --app-font-sans: 'Inter', sans-serif;
+  --app-font-serif: 'Cinzel', serif;
+  --app-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  --radius: 0.1rem; /* Sharp edges for fantasy feel */
+}
+
+.dark {
+  /* Keep identical to :root to enforce dark mode always */
+  --background: 228 18% 5%;
+  --foreground: 33 24% 95%;
+  --border: 228 15% 15%;
+  --input: 228 15% 12%;
+  --ring: 345 69% 71%;
+  --card: 228 18% 7%;
+  --card-foreground: 33 24% 95%;
+  --card-border: 44 53% 54%;
+  --popover: 228 18% 6%;
+  --popover-foreground: 33 24% 95%;
+  --popover-border: 44 53% 54%;
+  --primary: 345 69% 71%;
+  --primary-foreground: 228 18% 5%;
+  --secondary: 44 53% 54%;
+  --secondary-foreground: 228 18% 5%;
+  --muted: 228 15% 15%;
+  --muted-foreground: 228 10% 65%;
+  --accent: 345 50% 20%;
+  --accent-foreground: 345 69% 71%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 33 24% 95%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground;
+    background-image: radial-gradient(circle at 50% 0%, rgba(232, 130, 156, 0.05) 0%, transparent 70%);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .font-subheading {
+    font-family: 'Marcellus', serif;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+}
